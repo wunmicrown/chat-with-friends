@@ -26,6 +26,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyA9bydUkAi9mI7LW0cKiQk_d1Odo6bvuoU",
       authDomain: "chatapp-43291.firebaseapp.com",
+      databaseURL: "https://chatapp-43291-default-rtdb.firebaseio.com",
       projectId: "chatapp-43291",
       storageBucket: "chatapp-43291.appspot.com",
       messagingSenderId: "82262186941",
@@ -39,11 +40,10 @@
     const database = getDatabase();
     let userIndex = 0
     const signIn = () => {
-      alert("working");
       signInWithPopup(auth, provider)
         .then((response) => {
           console.log(response);
-                disp.innerHTML = `
+          disp.innerHTML = `
                 <h1>
               Welcome, ${response.user.displayName}
             </h1>
@@ -52,7 +52,7 @@
             </h1>
             <img src='${response.user.photoURL}'/>
                 `;
-                let user = {
+          let user = {
             email: response.user.email,
             displayName: response.user.displayName,
             profilePic: response.user.photoURL,
@@ -63,7 +63,7 @@
           sendEmailVerification(auth.currentUser).then(() => {
             console.log("successful");
           });
-          // window.location.href = "dashboard.html";
+          window.location.href = "dashboard.html";
           console.log(response)
         }).catch((error) => {
           console.log(error);
